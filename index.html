@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>iTaoBuy spreadsheet | CAFANS Finds and Buying Guide</title>
+  <meta name="description" content="Browse real CAFANS finds by category, compare estimated USD prices, and calculate your delivered cost before placing an iTaoBuy order.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#102d25">
+  <style>
+    :root{color-scheme:light;--ink:#102d25;--muted:#465b52;--paper:#f4f7ef;--line:#d7e2d8;--accent:#dcfa82}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.6 "DM Sans",system-ui,sans-serif}
+    [hidden]{display:none!important}
+    a{color:inherit;text-underline-offset:.22em}
+    :focus-visible{outline:3px solid #277662;outline-offset:4px}
+    .wrap{width:min(70rem,calc(100% - 2rem));margin-inline:auto}
+    header{background:var(--ink);color:var(--paper);text-align:center;padding:clamp(3rem,9vw,7rem) 0}
+    h1,h2{line-height:1.08;letter-spacing:-.045em;margin:0}
+    h1{font-size:clamp(2.6rem,8vw,6rem)}
+    h2{font-size:clamp(1.8rem,4vw,2.8rem)}
+    p{margin:.65rem 0 0}
+    header p{max-width:36rem;margin:1rem auto 0}
+    .actions{display:flex;justify-content:center;flex-wrap:wrap;gap:.75rem;margin-top:1.6rem}
+    .cta{display:inline-block;padding:.65rem 1.15rem;border:1px solid var(--accent);border-radius:.65rem;text-decoration:none;font-weight:750;color:var(--accent)}
+    .primary{background:var(--accent);color:var(--ink)}
+    section{margin-block:clamp(2rem,5vw,4rem)}
+    .intro{text-align:center;max-width:42rem;margin:0 auto 1.5rem}
+    .intro p,.note{color:var(--muted)}
+    .panel{padding:clamp(1rem,3vw,2rem);background:#fff;border:1px solid var(--line);border-radius:1rem}
+    .controls,.budget{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.75rem;margin:1rem 0}
+    label{display:grid;gap:.25rem;font-weight:650}
+    input,select{width:100%;min-width:0;padding:.55rem .7rem;border:1px solid #72877b;border-radius:.45rem;background:#fff;color:inherit;font:inherit}
+    .table-wrap{overflow:auto}
+    table{width:100%;border-collapse:collapse;text-align:left}
+    th,td{padding:.65rem .75rem;border-bottom:1px solid var(--line)}
+    thead{background:#e7f0e4}
+    th:last-child,td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+    .split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,25rem),1fr));gap:1rem}
+    li+li{margin-top:.65rem}
+    output{display:block;background:#e7f0e4;padding:.7rem .85rem;border-radius:.45rem;font-weight:750}
+    footer{border-top:1px solid var(--line);text-align:center;padding:1.5rem 0;color:var(--muted)}
+  </style>
+<link rel="canonical" href="https://kakobuyfinds.github.io/ihcyu/">
+</head>
+<body>
+  <!-- Search review: itaobuysheets.com emphasizes categories and QC photos.
+       chinagrails.com and itaobuy-spreadsheet.net offer searchable catalogs.
+       This page pairs source-linked CAFANS rows with a delivered-cost calculator and procurement checks.
+       Indexing status: pending. After deployment, use the final public URL on the verified property
+       in Google Search Console URL Inspection and Bing Webmaster Tools URL Submission. -->
+  <header>
+    <div class="wrap">
+      <h1>iTaoBuy spreadsheet</h1>
+      <p>Browse shoes and streetwear from CAFANS, then estimate what your shortlist could cost to ship.</p>
+      <div class="actions">
+        <a class="cta primary" href="https://cafans.com">iTaoBuy spreadsheet</a>
+        <a class="cta" href="https://cafans.com">Buy it now</a>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <section aria-labelledby="checks">
+      <div class="intro">
+        <h2 id="checks">Before you shortlist a find</h2>
+        <p>Save the seller URL, color, size and price for the exact option. For clothing, check whether the chart uses body or garment measurements. For shoes, confirm the sizing system and ask for an insole measurement if the listing leaves fit unclear.</p>
+      </div>
+    </section>
+    <section class="panel" aria-labelledby="catalog">
+      <div class="intro">
+        <h2 id="catalog">CAFANS product catalog</h2>
+        <p>Featured listings from CAFANS. USD prices are catalog estimates. Check the listing for the current price, options and availability.</p>
+      </div>
+      <div class="controls" id="catalog-controls" hidden>
+        <label>Product name <input id="query" type="search" placeholder="Search the catalog"></label>
+        <label>Category
+          <select id="category">
+            <option value="">All categories</option>
+            <option>Shoes</option><option>Hoodies &amp; sweaters</option><option>T-shirts</option><option>Jackets</option>
+          </select>
+        </label>
+      </div>
+      <div class="table-wrap">
+        <table aria-label="Featured CAFANS products">
+          <thead><tr><th scope="col">Product</th><th scope="col">Category</th><th scope="col">Est. USD</th></tr></thead>
+          <tbody id="products">
+            <tr><td><a href="https://cafans.com/goods-158791.html">Leather Slides</a></td><td>Shoes</td><td>$62.36</td></tr>
+            <tr><td><a href="https://cafans.com/goods-158790.html">Platform Slides</a></td><td>Shoes</td><td>$46.67</td></tr>
+            <tr><td><a href="https://cafans.com/goods-158792.html">Sweatshirt</a></td><td>Hoodies &amp; sweaters</td><td>$27.50</td></tr>
+            <tr><td><a href="https://cafans.com/goods-158200.html">Unisex Embroidered Oversized T-Shirt</a></td><td>T-shirts</td><td>$32.64</td></tr>
+            <tr><td><a href="https://cafans.com/goods-158279.html">Corteiz Jacket</a></td><td>Jackets</td><td>$42.78</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p id="matches" class="note" role="status"></p>
+    </section>
+    <section class="split" aria-label="Ordering and budget">
+      <article class="panel">
+        <h2>How to order through iTaoBuy</h2>
+        <ol>
+          <li>Open a CAFANS product page and check the original listing for stock, measurements and seller terms.</li>
+          <li>Select iTaoBuy in the buying options if it is available, or copy the original listing URL and check whether iTaoBuy accepts it.</li>
+          <li>If warehouse QC photos are available, compare them with your saved option. Check the size label, color and condition before approving shipment.</li>
+          <li>Compare shipping quotes for the same destination and parcel dimensions. Ask which weight the carrier uses for billing and which fees the quote includes.</li>
+        </ol>
+      </article>
+      <article class="panel">
+        <h2>Estimate delivered cost</h2>
+        <p class="note">Convert your quotes to USD first. Enter taxes and duties only if they are billed separately from the shipping quote.</p>
+        <div id="calculator" hidden>
+          <div class="budget">
+            <label>Products (USD)<input id="items" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00"></label>
+            <label>Domestic shipping (USD)<input type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00"></label>
+            <label>International shipping (USD)<input type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00"></label>
+            <label>Fees, taxes and duties (USD)<input type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00"></label>
+          </div>
+          <output id="total" aria-live="polite">Estimated total: $0.00</output>
+        </div>
+        <noscript><p>Add product prices, domestic freight, international freight and separately billed fees, taxes and duties.</p></noscript>
+      </article>
+    </section>
+  </main>
+  <footer><div class="wrap">Independent shopping guide. Product listings are sourced from <a href="https://cafans.com">CAFANS</a>.</div></footer>
+  <script>
+    const query = document.getElementById('query');
+    const category = document.getElementById('category');
+    const rows = Array.from(document.getElementById('products').rows);
+    const matches = document.getElementById('matches');
+
+    function filterProducts() {
+      const term = query.value.trim().toLowerCase();
+      let count = 0;
+      for (const row of rows) {
+        const nameMatches = row.cells[0].textContent.toLowerCase().includes(term);
+        const categoryMatches = !category.value || row.cells[1].textContent === category.value;
+        row.hidden = !(nameMatches && categoryMatches);
+        count += Number(!row.hidden);
+      }
+      matches.textContent = count ? `Showing ${count} of ${rows.length} products.` : 'No matching products.';
+    }
+
+    query.addEventListener('input', filterProducts);
+    category.addEventListener('change', filterProducts);
+    document.getElementById('catalog-controls').hidden = false;
+    filterProducts();
+
+    const calculator = document.getElementById('calculator');
+    const amounts = Array.from(calculator.querySelectorAll('input'));
+    const total = document.getElementById('total');
+    const dollars = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+
+    function updateTotal() {
+      if (amounts.some(input => !input.validity.valid)) {
+        total.textContent = 'Enter valid amounts of zero or more, using up to two decimal places.';
+        return;
+      }
+      const cents = amounts.reduce((sum, input) => sum + Math.round(Number(input.value) * 100), 0);
+      total.textContent = `Estimated total: ${dollars.format(cents / 100)}`;
+    }
+
+    calculator.addEventListener('input', updateTotal);
+    calculator.hidden = false;
+    updateTotal();
+  </script>
+</body>
+</html>
